@@ -3,7 +3,7 @@ import type {FastifyRequest} from "fastify";
 import blobServiceClient from "../app/functions/blob-service"
 
 const configuration = new Configuration({
-    apiKey:'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'
+    apiKey:process.env.OPEN_API_KEY
 })
 
 const openAi = new OpenAIApi(configuration)
@@ -47,11 +47,11 @@ function generateIconRoutes(fastify, _,done) {
         const containerClient = blobServiceClient.getContainerClient(containerName);
         const blockBlobClient = containerClient.getBlockBlobClient(blobName);
         const uploadBlobResponse = await blockBlobClient.upload(imageUrl, imageUrl.length);
-        console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
+        console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse);
 
         // await generateImage(prompt,1)
 
-        res.send("worked")
+        res.send(uploadBlobResponse)
     })
     done()
 }
