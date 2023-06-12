@@ -8,7 +8,7 @@ const fastify = require('fastify')()
 
 fastify.register(generateIconRoutes,{prefix:"/v1"})
 
-fastify.listen({port:4000},(err, address) => {
+fastify.listen({port:4000, host: '0.0.0.0' },(err, address) => {
     if(err) {
         process.exit()
     }

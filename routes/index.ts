@@ -34,6 +34,7 @@ function generateIconRoutes(fastify, _,done) {
     fastify.get('/', async function(req, reply) {
         let i = 1;
         let containers = blobServiceClient.listContainers() as any;
+        console.log("testing")
         for await (const container of containers) {
             console.log(`Container ${i++}: ${container.name}`);
         }
