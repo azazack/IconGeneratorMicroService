@@ -2,10 +2,10 @@ FROM node:slim
 WORKDIR /project
 COPY  package.json /project
 RUN npm install
+RUN npm install -g ts-node
 COPY . /project
-RUN npx tsc index.ts
 EXPOSE 4000
-CMD node index.js
+CMD ["ts-node", "index.ts"]
 
 
 
